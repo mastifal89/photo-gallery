@@ -19,7 +19,7 @@ Before you begin, make sure you have the following installed:
 
 ```bash
   git clone git@github.com:mastifal89/photo-gallery.git
-  
+
   cd photo-gallery
 ```
 
@@ -27,7 +27,7 @@ Before you begin, make sure you have the following installed:
 
 ```bash
   npm install
-
+  #OR
   yarn install
   ```
 
@@ -35,7 +35,7 @@ Before you begin, make sure you have the following installed:
 
 ```bash
   npm start
-
+  #OR
   yarn start
 ```
 
