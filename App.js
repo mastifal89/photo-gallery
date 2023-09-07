@@ -1,113 +1,42 @@
-import { Camera } from "expo-camera";
-import { useRef, useState } from "react";
-import {
-  Button,
-  ImageBackground,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import React, { useState } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import GalleryScreen from "./src/screens/GalleryScreen";
+import TakePhotoScreen from "./src/screens/TakePhotoScreen";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
-  const [status, requestPermission] = Camera.useCameraPermissions();
-  const [type, setType] = useState(Camera.Constants.Type.back);
-  const [lastPhotoURI, setLastPhotoURI] = useState(null);
-  const cameraRef = useRef(null);
 
-  if (!status?.granted) {
-    return (
-      <View
-        style={{ flex: 1, justifyContent: "center", alignContent: "center" }}
-      >
-        <Text style={{ textAlign: "center" }}>
-          We need access to your camera
-        </Text>
-        <Button onPress={requestPermission} title="Grant permission" />
-      </View>
-    );
-  }
-
-  if (lastPhotoURI !== null) {
-    return (
-      <ImageBackground
-        source={{ uri: lastPhotoURI }}
-        style={{
-          flex: 1,
-          backgroundColor: "transparent",
-          flexDirection: "row",
-          justifyContent: "center",
-        }}
-      >
-        <TouchableOpacity
-          style={{
-            flex: 0.2,
-            alignSelf: "flex-end",
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: "#666",
-            marginBottom: 40,
-            marginLeft: 20,
-          }}
-          onPress={() => {
-            setLastPhotoURI(null);
-          }}
-        >
-          <Text style={{ fontSize: 30, padding: 10, color: "white" }}>❌</Text>
-        </TouchableOpacity>
-      </ImageBackground>
-    );
-  }
+  const [capturedPhotos, setCapturedPhotos] = useState([]);
 
   return (
-    <Camera style={{ flex: 1 }} type={type} ref={cameraRef}>
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: "transparent",
-          flexDirection: "row",
-          justifyContent: "center",
-        }}
-      >
-        <TouchableOpacity
-          style={{
-            flex: 0.2,
-            alignSelf: "flex-end",
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: "#666",
-            marginBottom: 40,
-            marginLeft: 20,
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen
+          name="Gallery"
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <FontAwesome name="picture-o" size={size} color={color} /> // Add your desired icon here
+            ),
           }}
-          onPress={() => {
-            setType(
-              type === Camera.Constants.Type.back
-                ? Camera.Constants.Type.front
-                : Camera.Constants.Type.back
-            );
+          children={
+            (props) => <GalleryScreen {...props} capturedPhotos={capturedPhotos} />
+          }
+        />
+        <Tab.Screen
+          name="Take Photo"
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <FontAwesome name="camera" size={size} color={color} /> // Add your desired icon here
+            ),
           }}
-        >
-          <Text style={{ fontSize: 30, padding: 10, color: "white" }}>♻</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{
-            flex: 0.2,
-            alignSelf: "flex-end",
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: "#666",
-            marginBottom: 40,
-            marginLeft: 20,
-          }}
-          onPress={async () => {
-            if (cameraRef.current) {
-              let photo = await cameraRef.current.takePictureAsync();
-              setLastPhotoURI(photo.uri);
-            }
-          }}
-        >
-          <Text style={{ fontSize: 30, padding: 10, color: "white" }}>📸</Text>
-        </TouchableOpacity>
-      </View>
-    </Camera>
+          children={
+            (props) => <TakePhotoScreen {...props} setCapturedPhotos={setCapturedPhotos} />
+          }
+        />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
