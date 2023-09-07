@@ -1,32 +1,41 @@
 # Camera Example
 
-<p>
-  <!-- iOS -->
-  <a href="https://itunes.apple.com/app/apple-store/id982107779">
-    <img alt="Supports Expo iOS" longdesc="Supports Expo iOS" src="https://img.shields.io/badge/iOS-4630EB.svg?style=flat-square&logo=APPLE&labelColor=999999&logoColor=fff" />
-  </a>
-  <!-- Android -->
-  <a href="https://play.google.com/store/apps/details?id=host.exp.exponent&referrer=blankexample">
-    <img alt="Supports Expo Android" longdesc="Supports Expo Android" src="https://img.shields.io/badge/Android-4630EB.svg?style=flat-square&logo=ANDROID&labelColor=A4C639&logoColor=fff" />
-  </a>
-  <!-- Web -->
-  <a href="https://docs.expo.dev/workflow/web/">
-    <img alt="Supports Expo Web" longdesc="Supports Expo Web" src="https://img.shields.io/badge/web-4630EB.svg?style=flat-square&logo=GOOGLE-CHROME&labelColor=4285F4&logoColor=fff" />
-  </a>
-</p>
+This example demonstrates how to take a picture with a camera and display it in a React Native application using the Expo framework.
 
-This example shows how to take a picture and display it.
+## 🚀 Getting Started
 
-## 🚀 How to use
+Follow these steps to get the Camera Example up and running on your development environment.
 
-- Install packages with `yarn` or `npm install`.
-  - If you have native iOS code run `npx pod-install`
-- Run `yarn start` or `npm run start` to start the bundler.
-- Open the project in a React runtime to try it:
-  - iOS: [Client iOS](https://itunes.apple.com/app/apple-store/id982107779)
-  - Android: [Client Android](https://play.google.com/store/apps/details?id=host.exp.exponent&referrer=blankexample)
-  - Web: Any web browser on [localhost or through HTTPS](https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts)
+### Prerequisites
 
-## 📝 Notes
+Before you begin, make sure you have the following installed:
 
-- Learn more about [Expo Camera](https://docs.expo.dev/versions/latest/sdk/camera).
+- Node.js and npm (Node Package Manager)
+- Expo CLI (You can install it globally with `npm install -g expo-cli`)
+
+### Installation
+
+1. Clone this repository to your local machine:
+
+```bash
+  git clone git@github.com:mastifal89/photo-gallery.git
+  
+  cd photo-gallery
+```
+
+2. Install dependencies
+
+```bash
+  npm install
+
+  yarn install
+  ```
+
+3. Run the application
+
+```bash
+  npm start
+
+  yarn start
+```
+
